@@ -249,14 +249,13 @@
       .full-width { grid-column: span 1; }
     }
 
-    /* --- ESTILOS DO PLAYER DE MÚSICA (Canto Inferior Direito) --- */
+    /* --- ESTILOS DO PLAYER DE MÚSICA COM MOVIMENTO --- */
     #music-player-container {
       position: fixed;
-      bottom: -150px; /* Começa escondido abaixo da tela */
+      bottom: -150px;
       right: 20px;
       background: rgba(13, 17, 23, 0.9);
       backdrop-filter: blur(10px);
-      border:: 1px solid #30363d;
       border: 1px solid #30363d;
       padding: 12px 16px;
       border-radius: 14px;
@@ -265,15 +264,19 @@
       gap: 15px;
       z-index: 999;
       box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-      transition: bottom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.3s ease;
-    }
-    #music-player-container:hover {
-      transform: scale(1.02);
-      border-color: #58a6ff;
-      box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
+      transition: bottom 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
     #music-player-container.show {
-      bottom: 20px; /* Desliza para cima quando ativado */
+      bottom: 20px;
+      animation: floatPlayer 4s ease-in-out infinite;
+    }
+    @keyframes floatPlayer {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    #music-player-container:hover {
+      border-color: #58a6ff;
+      box-shadow: 0 0 20px rgba(88, 166, 255, 0.4);
     }
 
     /* CD Giratório */
@@ -402,10 +405,10 @@
 </head>
 <body>
 
-  <!-- Tela de Entrada Ofuscada (Sem texto, aguardando clique) -->
+  <!-- Tela de Entrada Ofuscada -->
   <div id="splash-screen" onclick="entrarNoSite()"></div>
 
-  <!-- Elemento de Chuva -->
+  <!-- Efeito de Chuva -->
   <div id="rain-container"></div>
 
   <div class="container">
@@ -540,20 +543,40 @@
     // --- LISTA DE MÚSICAS (Adicione suas músicas aqui) ---
     const playlist = [
       {
-        title: "Música Exemplo 1",
-        artist: "Cantor 1",
+        title: "Conglations - Instrumental",
+        artist: "Post Malone",
         src: "musica1.mp3" // Troque pelo link ou caminho do arquivo mp3
       },
       {
-        title: "Música Exemplo 2",
-        artist: "Cantor 2",
+        title: "Set dos casados Speed up + grave",
+        artist: " MC Kevin, Davi, Hariel, Don Juan",
         src: "musica2.mp3" // Troque pelo link ou caminho do arquivo mp3
       },
       {
-        title: "Música Exemplo 3",
-        artist: "Cantor 3",
+        title: "Noite Perfeita",
+        artist: "Brandão",
         src: "musica3.mp3" // Troque pelo link ou caminho do arquivo mp3
-      }
+      },
+       {
+        title: "Kenny G",
+        artist: "Matue",
+        src: "musica4.mp3" // Troque pelo link ou caminho do arquivo mp3
+      },
+      {
+        title: "Kenny G",
+        artist: "Matue",
+        src: "musica5.mp3" // Troque pelo link ou caminho do arquivo mp3
+      },
+      {
+        title: "Noite Perfeita",
+        artist: "Brandão",
+        src: "musica6.mp3" // Troque pelo link ou caminho do arquivo mp3
+      },
+      {
+        title: "Noite Perfeita",
+        artist: "Brandão",
+        src: "musica7.mp3" // Troque pelo link ou caminho do arquivo mp3
+      },
     ];
 
     let currentTrackIndex = 0;
@@ -578,10 +601,8 @@
       const splash = document.getElementById('splash-screen');
       const playerContainer = document.getElementById('music-player-container');
       
-      // Revela o player deslizando do canto inferior direito
       playerContainer.classList.add('show');
 
-      // Carrega e toca a primeira música
       loadTrack(currentTrackIndex);
       audioElement.play().then(() => {
         cdDisc.classList.add('spinning');
@@ -609,10 +630,8 @@
     function updatePlayPauseIcon(isPlaying) {
       const playPauseIconSvg = playPauseBtn.querySelector('svg');
       if (isPlaying) {
-        // Ícone de Pause
         playPauseIconSvg.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>';
       } else {
-        // Ícone de Play
         playPauseIconSvg.innerHTML = '<path d="M8 5v14l11-7z"/>';
       }
     }
@@ -633,7 +652,6 @@
       updatePlayPauseIcon(true);
     }
 
-    // Atualiza a barra de progresso e minutos conforme a música avança
     audioElement.addEventListener('timeupdate', () => {
       if (audioElement.duration) {
         const progressPercent = (audioElement.currentTime / audioElement.duration) * 100;
@@ -643,7 +661,6 @@
       }
     });
 
-    // Permitir arrastar ou clicar na barra para mudar o minuto da música
     progressBar.addEventListener('input', () => {
       if (audioElement.duration) {
         const seekTime = (progressBar.value / 100) * audioElement.duration;
@@ -651,7 +668,6 @@
       }
     });
 
-    // Passar para a próxima música automaticamente quando acabar
     audioElement.addEventListener('ended', () => {
       nextSong();
     });
@@ -662,10 +678,8 @@
       return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
-    // Inicializa a primeira música carregada nos dados
     loadTrack(0);
 
-    // Efeitos visuais de Chuva e Neve
     function createRainDrop() {
       const container = document.getElementById('rain-container');
       const drop = document.createElement('div');
