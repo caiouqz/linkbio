@@ -94,5 +94,25 @@ const playlist = [
  
 </audio>
 
+---------------------------------------------------------------------------------------------------
+
+<div align="center">
+
+  <!-- Subtítulo pequeno opcional -->
+  <p><code>A M U L T I - P U R P O S E &nbsp; L I N K B I O</code></p>
+
+  <!-- Linha principal com o Cérebro e o nome LINKBIO -->
+  <h1>
+    <img src="https://api.iconify.design/lucide:brain.svg?color=white&width=45" alt="Cérebro" style="vertical-align: middle; margin-right: 10px;" />
+    <span style="color: #FFFFFF; font-family: monospace; letter-spacing: 2px;">LINKBIO</span>
+  </h1>
+
+  <!-- Assinatura menor embaixo -->
+  <p style="font-size: 12px; color: #888888; margin-top: -10px;">
+    by: Caio
+  </p>
+
+</div>
+
 
 
