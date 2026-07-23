@@ -15,10 +15,6 @@
   </p>
 
 </div>
-    <code>✨ <em>developed with creativity by <strong>Caio</strong></em> ✨</code>
-  </p>
-
-</div>
 
 
 🚀 Bem-vindo ao meu repositório!
