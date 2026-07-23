@@ -62,3 +62,25 @@ Altere o link dentro do atributo `src`:
   <source src="LINK_DA_SUA_MUSICA_AQUI.mp3" type="audio/mp3">
 
 </audio>
+
+### 🎵 Como usar uma música do YouTube ou do seu PC?
+
+A tag `<audio>` do HTML **não aceita links diretos do YouTube**. Ela precisa de um arquivo de áudio real. A forma mais segura de garantir que sua música sempre toque é hospedando o arquivo junto com o seu site no GitHub.
+
+Siga este passo a passo:
+
+1. **Baixe o áudio:** Tenha a música em formato `.mp3` no seu computador (se a música estiver no YouTube, você pode usar sites conversores gratuitos de "YouTube para MP3" buscando no Google).
+2. **Envie para o GitHub:** Faça o upload desse arquivo `.mp3` para a mesma pasta onde está o arquivo `index.html` do seu repositório.
+3. **Renomeie:** Para facilitar, deixe o nome do arquivo simples, sem espaços (exemplo: `minha-musica.mp3`).
+4. **Altere o código:** No arquivo `index.html`, troque o link da internet pelo nome do seu arquivo.
+
+Vai ficar assim:
+
+```html
+<!-- PASSO A PASSO PARA USAR SEU PRÓPRIO MP3 -->
+<audio id="bg-music" loop>
+  
+  <!-- Como o arquivo está na mesma pasta que o index.html, basta colocar o nome dele aqui -->
+  <source src="minha-musica.mp3" type="audio/mp3">
+
+</audio>
