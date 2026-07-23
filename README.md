@@ -93,3 +93,6 @@ const playlist = [
 
  
 </audio>
+
+<img width="1871" height="911" alt="image" src="https://github.com/user-attachments/assets/ba66fc62-4af3-405f-b395-4cc15c30ff12" />
+
